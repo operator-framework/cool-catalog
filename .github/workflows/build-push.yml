@@ -14,14 +14,19 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
       - name: Docker meta
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: docker.io/anik120/coolcatalog
+          images: docker.io/anik120/cool-catalog
           tag-sha: true
           tag-edge: false
-          tag-latest: true
+          tag-latest: false
           
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -39,7 +44,7 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v2
         with:
-          tags: ${{ steps.docker_meta.outputs.tags }} 
+          tags: ${{ steps.extract_branch.outputs.branch }} 
           file: CoolCatalog.Dockerfile
           context: . 
 
@@ -47,6 +52,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ steps.docker_meta.outputs.tags }}
+          tags: ${{ steps.extract_branch.outputs.branch }}
           file: CoolCatalog.Dockerfile
           context: .
