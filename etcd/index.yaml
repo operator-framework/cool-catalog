@@ -10,12 +10,6 @@
     "image": "docker.io/anik120/etcd:latest",
     "properties": [
         {
-            "type": "olm.channel",
-            "value": {
-                "name": "alpha"
-            }
-        },
-        {
             "type": "olm.gvk",
             "value": {
                 "group": "etcd.database.coreos.com",
@@ -39,12 +33,6 @@
     "image": "docker.io/anik120/etcd:v0.9.4",
     "properties": [
         {
-            "type": "olm.channel",
-            "value": {
-                "name": "beta"
-            }
-        },
-        {
             "type": "olm.gvk",
             "value": {
                 "group": "etcd.database.coreos.com",
@@ -59,5 +47,14 @@
                 "version": "0.9.4"
             }
         }
+    ]
+}
+{
+    "schema": "olm.channel",
+    "name": "alpha",
+    "package": "etcd",
+    "entries": [
+        {"name":"etcdoperator-community.v0.6.1"},
+        {"name":"etcdoperator-community.v0.9.4", "replaces":"etcdoperator-community.v0.6.1"},
     ]
 }
