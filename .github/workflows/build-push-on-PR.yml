@@ -21,7 +21,7 @@ jobs:
           images: docker.io/anik120/cool-catalog
           tag-sha: true
           tag-edge: false
-          tag-semver: true
+          tags: ${{ github.event.number }}
           
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
