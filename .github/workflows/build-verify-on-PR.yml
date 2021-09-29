@@ -1,9 +1,9 @@
 name: CI
 
 on:
-  pull_request_target:
-    branches: [ main ]
-
+  pull_request:
+    branches: 
+    - '**'
 
 jobs:
 
@@ -43,10 +43,8 @@ jobs:
           file: cool-catalog.Dockerfile
           context: . 
 
-      - name: Push image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ${{ steps.docker_meta.outputs.tags }}
-          file: cool-catalog.Dockerfile
-          context: .
+  verify:
+    runs-on: quay.io/operator-framework/opm:latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: opm verify $GITHUB_WORKSPACE
