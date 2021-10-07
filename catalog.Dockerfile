@@ -4,11 +4,11 @@ FROM quay.io/operator-framework/opm:latest
 
 # Configure the entrypoint and command
 ENTRYPOINT ["/bin/opm"]
-CMD ["serve", "/configs"]
+CMD ["serve", "/catalog"]
 
 # Copy declarative config root into image at /configs
-ADD . /configs
+ADD catalog /catalog
 
-# Set DC-specific label for the location of the DC root directory
+# Set label for the location of the catalog root directory
 # in the image
-LABEL operators.operatorframework.io.index.configs.v1=/configs
+LABEL operators.operatorframework.io.index.configs.v1=/catalog
