@@ -36,8 +36,8 @@ jobs:
           file: cool-catalog.Dockerfile
           context: . 
 
-  verify:
+  validate:
     runs-on: quay.io/operator-framework/opm:latest
     steps:
       - uses: actions/checkout@v2
-      - run: opm verify $GITHUB_WORKSPACE
+      - run: opm validate $GITHUB_WORKSPACE
