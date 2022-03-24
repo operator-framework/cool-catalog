@@ -48,5 +48,3 @@ jobs:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           file: catalog.Dockerfile
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.QUAY_PASSWORD }}
