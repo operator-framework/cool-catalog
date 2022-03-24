@@ -40,6 +40,5 @@ jobs:
         with:
           context: .
           push: true
-            #tags: ${{ steps.docker_meta.outputs.tags }}
-          tags: quay.io/grokspawn/cool-catalog:main
+          tags: ${{ steps.docker_meta.outputs.tags }}
           file: catalog.Dockerfile
