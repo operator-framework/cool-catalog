@@ -21,6 +21,13 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
 
+      - name: Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@3
+        with:
+          images: quay.io/grokspawn/cool-catalog
+          tags: quay.io/grokspawn/cool-catalog:${{ github.event.number }}
+
       - name: Build image
         uses: docker/build-push-action@v2
         with:
