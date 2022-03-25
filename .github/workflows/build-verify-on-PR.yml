@@ -35,7 +35,12 @@ jobs:
           file: catalog.Dockerfile
 
   validate:
-    runs-on: quay.io/operator-framework/opm:latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: opm validate $GITHUB_WORKSPACE/catalog/
+    #    runs-on: quay.io/operator-framework/opm:latest
+    #    steps:
+    #      - uses: actions/checkout@v2
+    #      - run: opm validate $GITHUB_WORKSPACE/catalog/
+    - name: Validate
+      uses: joelanford/opm-validate@main
+      with:
+        catalog: catalog
+      
