@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  build: 
+  test:
     runs-on: ubuntu-latest
     
     steps:
@@ -25,10 +25,3 @@ jobs:
       with:
         catalog: catalog
 
-
-  validate:
-    #    runs-on: quay.io/operator-framework/opm:latest
-    #    steps:
-    #      - uses: actions/checkout@v2
-    #      - run: opm validate $GITHUB_WORKSPACE/catalog/
-      
