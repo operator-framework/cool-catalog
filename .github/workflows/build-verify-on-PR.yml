@@ -18,7 +18,9 @@ jobs:
       - name: Validate Contributor
         run: |
           NUM_OWNERS=`grep -c ${{ github.actor }} CODEOWNERS`
-          if [ $NUM_OWNER -eq 0 ] ; then
+          if [ $NUM_OWNERS -gt 0 ] ; then
+            echo "validated user found in database"
+          else
             exit 1
           fi
 
