@@ -17,7 +17,10 @@ jobs:
       # catalog contribution
       - name: Validate Contributor
         run: |
-          grep -c ${{ github.actor }} CODEOWNERS
+          NUM_OWNERS=`grep -c ${{ github.actor }} CODEOWNERS`
+          if [ $NUM_OWNER -eq 0 ] ; then
+            exit 1
+          fi
 
       - name: Validate Contribution
         uses: joelanford/opm-validate@main
