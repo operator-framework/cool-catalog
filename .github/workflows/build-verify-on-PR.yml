@@ -15,12 +15,12 @@ jobs:
   
       # models a future action where the submittor is validated against auth access for the
       # catalog contribution
-    - name: Validate Contributor
-      run: |
-        grep -c ${{ github.actor }} CODEOWNERS
+      - name: Validate Contributor
+        run: |
+          grep -c ${{ github.actor }} CODEOWNERS
 
-    - name: Validate Contribution
-      uses: joelanford/opm-validate@main
-      with:
-        catalog: catalog
+      - name: Validate Contribution
+        uses: joelanford/opm-validate@main
+        with:
+          catalog: catalog
 
