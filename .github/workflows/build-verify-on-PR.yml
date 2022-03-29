@@ -29,3 +29,10 @@ jobs:
         with:
           catalog: catalog
 
+      - name: automerge PRs that pass checks
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.GH_PAT }}
+          pull-request-number: ${{ github.event.pull_request.number }}
+          merge-method: merge
+
