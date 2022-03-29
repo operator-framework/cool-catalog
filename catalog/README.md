@@ -5,10 +5,10 @@ This directory serves to contain individual operator catalogs.  Each operator wi
 a sub-directory named after it.  
 For example, for the operator catalog for 'example-operator', we would anticipate the following directory structure:
 
-catalog/
-└── example-operator
-    ├── catalog.yaml
-    └── OWNERS
+catalog/  
+└── example-operator  
+    ├── catalog.yaml  
+    └── OWNERS  
 
 ## NB:  
 Because all levels of the catalog hierarchy need to be able to pass an opm validation attempt, it may be necessary to include `.indexignore` files to exclude non-catalog files from the attempt. 
