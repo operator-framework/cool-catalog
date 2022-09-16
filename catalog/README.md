@@ -5,7 +5,7 @@ This directory serves to contain individual operator catalogs.  Each operator wi
 a sub-directory named after it.  
 For example, for the operator catalog for 'example-operator', we would anticipate the following directory structure:
 
-```
+```tree
 catalog/  
 └── example-operator  
     ├── catalog.yaml  
