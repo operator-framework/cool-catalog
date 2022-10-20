@@ -1,0 +1,89 @@
+{
+    "schema": "olm.package",
+    "name": "prometheus",
+    "defaultChannel": "alpha"
+}
+{
+    "schema": "olm.bundle",
+    "name": "prometheus-operator.v0.14.0",
+    "package": "etcd",
+    "image": "docker.io/anik120/prometheus:v0.14.0",
+    "properties": [
+        {
+            "type": "olm.gvk",
+            "value": {
+                "group": "prometheuses.monitoring.coreos.com",
+                "kind": "Prometheus",
+                "version": "v1beta1"
+            }
+        },
+            "type": "olm.gvk",
+            "value": {
+                "group": "alertmanagers.monitoring.coreos.com",
+                "kind": "Alertmanager",
+                "version": "v1beta1"
+            }
+        },
+        },
+            "type": "olm.gvk",
+            "value": {
+                "group": "servicemonitors.monitoring.coreos.com",
+                "kind": "ServiceMonitor",
+                "version": "v1beta1"
+            }
+        },
+        {
+            "type": "olm.package",
+            "value": {
+                "packageName": "prometheus",
+                "version": "0.14.0"
+            }
+        }
+    ]
+}
+{
+    "schema": "olm.bundle",
+    "name": "prometheus-operator.v0.15.0",
+    "package": "etcd",
+    "image": "docker.io/anik120/prometheus:v0.15.0",
+    "properties": [
+            "type": "olm.gvk",
+            "value": {
+                "group": "prometheuses.monitoring.coreos.com",
+                "kind": "Prometheus",
+                "version": "v1beta1"
+            }
+        },
+            "type": "olm.gvk",
+            "value": {
+                "group": "alertmanagers.monitoring.coreos.com",
+                "kind": "Alertmanager",
+                "version": "v1beta1"
+            }
+        },
+        },
+            "type": "olm.gvk",
+            "value": {
+                "group": "servicemonitors.monitoring.coreos.com",
+                "kind": "ServiceMonitor",
+                "version": "v1beta1"
+            }
+        },
+        {
+            "type": "olm.package",
+            "value": {
+                "packageName": "prometheus",
+                "version": "0.15.0"
+            }
+        }
+    ]
+}
+{
+    "schema": "olm.channel",
+    "name": "alpha",
+    "package": "prometheus",
+    "entries": [
+        {"name":"prometheus-operator.v0.14.0"},
+        {"name":"prometheus-operator.v0.15.0", "replaces":"prometheus-operator.v0.15.0"},
+    ]
+}
