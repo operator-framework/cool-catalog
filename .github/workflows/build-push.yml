@@ -14,39 +14,30 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2
 
-      - name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: docker.io/anik120/cool-catalog
-          tag-sha: true
-          tag-edge: false
-          tag-latest: true
-          
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        
-      - name: Login to DockerHub
+      - name: login to registry
         uses: docker/login-action@v1
         with:
-          registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      
+
+      - name: Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@v3
+        with:
+          images: grokspawn/cool-catalog
+          tags: ${{ github.event.number }}
+
       - name: Build image
         uses: docker/build-push-action@v2
         with:
+          context: . 
           tags: ${{ steps.docker_meta.outputs.tags }} 
           file: catalog.Dockerfile
-          context: . 
 
       - name: Push image
         uses: docker/build-push-action@v2
         with:
+          context: .
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           file: catalog.Dockerfile
-          context: .
