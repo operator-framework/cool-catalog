@@ -22,7 +22,7 @@ jobs:
 
       - name: Docker meta
         id: docker_meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v6
         with:
           images: grokspawn/cool-catalog
           tags: ${{ github.event.number }}
