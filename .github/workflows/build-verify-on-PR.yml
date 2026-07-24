@@ -48,7 +48,7 @@ jobs:
           catalog: catalog
 
       - name: automerge PRs that pass checks
-        uses: peter-evans/enable-pull-request-automerge@v2.2.1
+        uses: peter-evans/enable-pull-request-automerge@v3.0.0
         with:
           token: ${{ secrets.GH_PAT }}
           pull-request-number: ${{ github.event.pull_request.number }}
