@@ -4,17 +4,33 @@ on:
   pull_request:
     branches:
     - '**'
-    paths:
-    - 'catalog/**'
 
 jobs:
-  build:
+  check-changes:
     runs-on: ubuntu-latest
-    
+    outputs:
+      catalog_changed: ${{ steps.filter.outputs.catalog }}
     steps:
       - name: Check out
         uses: actions/checkout@v2
-  
+
+      - name: Check for catalog changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            catalog:
+              - 'catalog/**'
+
+  build:
+    needs: check-changes
+    if: needs.check-changes.outputs.catalog_changed == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
       # models a future action where the submittor is validated against auth access for the
       # catalog contribution
       - name: Validate Contributor
@@ -37,4 +53,3 @@ jobs:
           token: ${{ secrets.GH_PAT }}
           pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: merge
-
