@@ -12,7 +12,7 @@ jobs:
       catalog_changed: ${{ steps.filter.outputs.catalog }}
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Check for catalog changes
         uses: dorny/paths-filter@v3
@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Check out
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       # models a future action where the submittor is validated against auth access for the
       # catalog contribution
