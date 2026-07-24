@@ -2,8 +2,10 @@ name: CI
 
 on:
   pull_request:
-    branches: 
+    branches:
     - '**'
+    paths:
+    - 'catalog/**'
 
 jobs:
   build:
